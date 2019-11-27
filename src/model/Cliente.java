@@ -8,10 +8,15 @@ public class Cliente extends Persona{
 		this.activo = activo;
 	}
 
+	
+
 	@Override
 	public String toString() {
-		return "Cliente [activo=" + activo + "]";
+		return "\nCliente" + ", IdPersona=" + getIdPersona()  + ",Nombre=" + getNombre()
+				+ ", pellido=" + getApellido() + ", Dni=" + getDni() +", activo="+ activo+ "]";
 	}
+
+
 
 	public boolean isActivo() {
 		return activo;
