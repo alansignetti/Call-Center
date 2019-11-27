@@ -10,7 +10,8 @@ public class Empleado extends Persona{
 
 	@Override
 	public String toString() {
-		return "Empleado [sueldoBase=" + sueldoBase + "]";
+		return "\nEmpleado "+", IdPersona=" + getIdPersona()  + ",Nombre=" + getNombre()
+		+ ", pellido=" + getApellido() + ", Dni=" + getDni()+ ", sueldoBase="+sueldoBase+"]";
 	}
 
 	public int getSueldoBase() {
