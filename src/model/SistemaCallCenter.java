@@ -106,23 +106,63 @@ public class SistemaCallCenter {
 		return listaEmpleado;
 	}
 
+	public List<Llamada> traerLlamada(LocalDate desde, LocalDate hasta){
+		
+		List<Llamada> lista= new ArrayList<Llamada>();
+		Iterator<Llamada> it=lstLlamadas.iterator();
+		Llamada l=null;
+		
+		while (it.hasNext()) {
+			 l =  it.next();
+			if (l.getFecha().isAfter(desde)||l.getFecha().isEqual(desde)&&l.getFecha().isBefore(hasta)||l.getFecha().isEqual(hasta)) {
+				lista.add(l);
+			}
+		}		
+		return lista;		
+	}
 
-	//	public List<Llamada> traerLlamada(LocalDate desde, LocalDate hasta, int nivelDeSatisfaccion){
-	//		
-	//		List<Llamada> lista= new ArrayList<Llamada>();
-	//		Iterator<Llamada> it=lstLlamadas.iterator();
-	//		Llamada l=null;
-	//		while (it.hasNext()) {
-	//			 l =  it.next();
-	//			if (l.) {
-	//				
-	//			}
-	//		}
-	//		
-	//		return lista;
-	//		
-	//	}
 
+		public List<Llamada> traerLlamada(LocalDate desde, LocalDate hasta, int nivelDeSatisfaccion){
+			
+			List<Llamada> lista= new ArrayList<Llamada>();
+			
+			Iterator<Llamada> it=this.traerLlamada(desde, hasta).iterator();
+			Llamada l=null;
+			while (it.hasNext()) {
+				 l =  it.next();
+				if (l.getNivelDeSatisfaccion()==nivelDeSatisfaccion) {
+					lista.add(l);
+				}
+			}		
+			return lista;			
+		}
+		
+		
+		public boolean agregarLlamada( LocalDate fecha, Cliente cliente, Empleado empleado, int nivelDeSatisfaccion) {
+
+			int id=1;
+			if (lstLlamadas.size()!=0) {
+				id=lstLlamadas.get(lstLlamadas.size()-1).getIdLlamada()+1;
+			}
+			
+			return lstLlamadas.add(new Llamada(id, cliente, empleado, fecha, nivelDeSatisfaccion));
+		}
+		
+
+		public double calcularPorcentajeNivelDeSatisfaccion(LocalDate desde,LocalDate hasta,int nivelDeSatisfaccion) {
+			List<Llamada>lista=this.traerLlamada(desde, hasta, nivelDeSatisfaccion);
+			double resultado=0;
+			int cantLlamadas=lista.size();
+			int totalLlamadas=lstLlamadas.size();
+			resultado=cantLlamadas*100/totalLlamadas;
+			return resultado;
+			
+		}
+		
+		
+		
+		
+	
 
 
 }
