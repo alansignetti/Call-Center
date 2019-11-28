@@ -18,7 +18,7 @@ public class Llamada {
 	}
 	@Override
 	public String toString() {
-		return "LLamada [idLlamada=" + idLlamada + ", cliente=" + cliente + ", empleado=" + empleado + ", fecha="
+		return "\nLLamada [idLlamada=" + idLlamada + ", cliente=" + cliente.getDni() + ", empleado=" + empleado.getDni() + ", fecha="
 				+ fecha + ", nivelDeSatisfaccion=" + nivelDeSatisfaccion + "]";
 	}
 	public int getIdLlamada() {
